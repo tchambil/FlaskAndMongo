@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>{{t}}</title>
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+	</head>
+<body>
+	<h1>{{h}}</h1>
+	<hr>
+	{% if todos[0] %}
+	<h3>Result of the Search : ToDO List</h3>
+	<table>
+	      <tr id="row">
+	    	<th class="status">Status</th>
+	    	<th class="date">date</th>
+	    	<th class="text">text</th>
+	    	<th class="user_name">user_name</th>
+	    	<th class="pr">retweeted</th>
+		<th class="func1">Remove</th>
+		<th class="func2">Modify</th>
+	    </tr>
+		{% for todo in todos %}
+		<tr class="datas">
+				<td><a href="./done?_id={{ todo['_id'] }}"><input type="image" src="static/images/yes.png" alt="Submit ME"></a></td>
+			<td class="name">{{ todo["date"] }}</td>
+			<td class="desc">{{ todo["text"] }}</td>
+			<td class="pr">{{ todo["user_name"] }}</td>
+			<td class="pr">{{ todo["retweeted"] }}</td>
+			<td class="func1"><a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></a></td>
+			<td class="func1"><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
+
+				</tr>
+		{% endfor %}
+	{% else %}
+		<h4>No Result Found !!</h4>
+	{% endif %}
+	</table>
+	<a href="/">Return to TweetsList</a>
+</body>
+</html>
